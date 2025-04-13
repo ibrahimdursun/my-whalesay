@@ -1,0 +1,27 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main  # Sadece main branch'ine yapılan push işlemleri tetiklesin
+  workflow_dispatch:  # Manuel tetikleme de yapılabilsin
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # GitHub Actions için sanal bir Ubuntu makinasi çalıştırılacak
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Log in to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t ibrahimdursun/my-whalesay:latest .
+        docker push ibrahimdursun/my-whalesay:latest
+
