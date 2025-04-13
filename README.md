@@ -13,7 +13,7 @@ Sisteminizde Docker ve Docker Compose kurulu olmalıdır.
 ```bash
 docker compose up
 
-### 3. Durdurmak
+### 3. Projeyi Durdurmak
 
 ```bash
 docker compose down
